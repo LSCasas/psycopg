@@ -27,3 +27,10 @@ def delete(table, where=None):
     cur.execute()
     conn.close()
     return result
+
+def insert(table, columns, values: list):
+    with psycopg.connect(CONN_STRING) as conn:
+        with conn.cursor() as cur:
+            columns = str(tuple(columns))
+            data = ", ".join([str(v) for v in values])
+            query = f"INSERT INTO {table}{columns} VALUES{data}"
