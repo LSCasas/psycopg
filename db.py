@@ -34,3 +34,11 @@ def insert(table, columns, values: list):
             columns = str(tuple(columns))
             data = ", ".join([str(v) for v in values])
             query = f"INSERT INTO {table}{columns} VALUES{data}"
+
+def update():
+    table = "customer"
+    column = "first_name"
+    valor = "Pedro"
+    value = f"'{valor}'" if isinstance(valor, str) else valor
+    where = " ".join(('customer_id', "=", "3"))
+    return f"UPDATE {table} SET {column} = {value} WHERE {where}"
